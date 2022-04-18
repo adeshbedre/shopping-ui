@@ -16,23 +16,9 @@ import {CartService} from "../../services/cart.service";
                 </button>
             </div>
             <div class="header-logo-wrapper">
-                <img class="header-logo-image" src="./assets/imgs/logo.png" alt="Hero">
+                <img class="header-logo-image" style="cursor: pointer;" routerLink="/" src="./assets/imgs/logo.png" alt="Hero">
             </div>
             <div class="header-nav-wrapper">
-                <ul class="header-nav">
-                    <li class="header-nav-item">
-                        <a routerLink="/">HOME</a>
-                    </li>
-                    <li class="header-nav-item">
-                        <a routerLink="/">SHOP<span class="fa fa-caret-down"></span></a>
-                    </li>
-                    <li class="header-nav-item">
-                        <a routerLink="/">JOURNAL</a>
-                    </li>
-                    <li class="header-nav-item">
-                        <a routerLink="/">MORE<span class="fa fa-caret-down"></span></a>
-                    </li>
-                </ul>
             </div>
             <div class="header-cart-wrapper">
                 <div class="header-cart" (click)="toggleCartPopup($event)">

@@ -25,7 +25,7 @@ export class ProductComponent implements OnInit {
             })
     }
     getProduct = (id) => {
-        this.sub = this.productService.getProducts('http://3.91.64.198:8080/findAllBooks')
+        this.sub = this.productService.getProducts('http://localhost:8080/findAllBooks')
             .subscribe(res => {
                 this.product = res[id-1];
             })

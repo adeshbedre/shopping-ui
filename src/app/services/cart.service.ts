@@ -30,4 +30,9 @@ export class CartService {
         current.splice(index,1);
         this.cartListSubject.next(current);
     };
+
+    removeAllFromCart() {
+        this.cartListSubject.next([]);
+
+    }
 }
