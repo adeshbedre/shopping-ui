@@ -50,7 +50,7 @@ export class CartService {
         p.address = address;
         p.password = password;
         console.log("ps is "+JSON.stringify(p));
-        return this.http.post('http://localhost:8080/register-user', p).map((res:Response) => res.json());
+        return this.http.post('http://172.31.23.221:8080/register-user', p).map((res:Response) => res.json());
     }
 
     userLogin(name: string, emailId: string, password: string, address: string) {
@@ -58,12 +58,12 @@ export class CartService {
         p.name = name;
         p.password = password;
         console.log("ps is "+JSON.stringify(p));
-        return this.http.post('http://localhost:8080/login', p).map((res:Response) => res.json());
+        return this.http.post('http://172.31.23.221:8080/login', p).map((res:Response) => res.json());
     }
 
     placeOrder(order :Order) {
         console.log("ps is "+JSON.stringify(order));
-        this.http.post('http://localhost:8080/order-place', order).subscribe(data => {
+        this.http.post('http://172.31.23.221:8080/order-place', order).subscribe(data => {
             console.log("the response is "+data);
         });
     }
@@ -73,7 +73,7 @@ export class CartService {
         let fetchOrder = new FetchOrder();
         fetchOrder.userName = userName
         console.log("ps is "+JSON.stringify(userName));
-        return this.http.post('http://localhost:8080/fetch-order',fetchOrder).map((res:Response) => res.json())
+        return this.http.post('http://172.31.23.221:8080/fetch-order',fetchOrder).map((res:Response) => res.json())
     }
 
 
