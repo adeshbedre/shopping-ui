@@ -35,8 +35,13 @@ export class LoginComponent implements OnInit {
         console.log("the username is "+this.userName);
         this.cartService.userLogin(data.userName,data.emailId,data.password,data.address).subscribe(res => {
             console.log("data is "+JSON.stringify(res));
-            sessionStorage.setItem("username", this.userName);
-            this.router.navigate(['/']);
+            if(res["statusCode"]  == 200) {
+                sessionStorage.setItem("username", this.userName);
+                this.router.navigate(['/']);
+            } else {
+                alert("Invalid user");
+            }
+            
             //data["statusCode"]
         })
         
