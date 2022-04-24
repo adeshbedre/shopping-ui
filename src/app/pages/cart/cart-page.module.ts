@@ -8,14 +8,22 @@ import {RouterModule} from "@angular/router";
 import {CartPageComponent} from "./cart-page.component";
 import {cartPageRoutes} from "./cart-page.routes";
 import { CheckoutPageComponent } from "./checkout-page.component";
+import { RegistrationComponent } from "../registration/registration.component";
+import { ReactiveFormsModule } from "@angular/forms";
+import { LoginComponent } from "../registration/login.component";
+import { MyOrdersComponent } from "./my-orders.component";
 @NgModule({
     imports: [
         SharedModule,
-        RouterModule.forChild(cartPageRoutes)
+        RouterModule.forChild(cartPageRoutes),
+        ReactiveFormsModule
     ],
     declarations: [
         CartPageComponent,
-        CheckoutPageComponent
+        CheckoutPageComponent,
+        RegistrationComponent,
+        LoginComponent,
+        MyOrdersComponent
     ]
 })
 export class CartPageModule { }

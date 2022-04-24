@@ -5,10 +5,17 @@ import { Injectable } from '@angular/core';
 import {BehaviorSubject} from "rxjs";
 import {Product} from "../model/product";
 import {Cart} from "../model/cart";
+import { Http } from '@angular/http';
+import { Order } from '../model/0rder';
+import { Person } from '../model/Person';
+import { FetchOrder } from '../model/FetchOrder';
+import {Response} from "@angular/http";
 
 @Injectable()
 export class CartService {
 
+    constructor(public http: Http) { }
+    
     public cartListSubject = new BehaviorSubject([]);
     public toggleCartSubject = new BehaviorSubject(false);
 
@@ -35,4 +42,41 @@ export class CartService {
         this.cartListSubject.next([]);
 
     }
+
+    registerUser(name: string, emailId: string, password: string, address: string) {
+        let p = new Person();
+        p.name = name;
+        p.emailId = emailId;
+        p.address = address;
+        p.password = password;
+        console.log("ps is "+JSON.stringify(p));
+        return this.http.post('http://localhost:8080/register-user', p).map((res:Response) => res.json());
+    }
+
+    userLogin(name: string, emailId: string, password: string, address: string) {
+        let p = new Person();
+        p.name = name;
+        p.password = password;
+        console.log("ps is "+JSON.stringify(p));
+        return this.http.post('http://localhost:8080/login', p).map((res:Response) => res.json());
+    }
+
+    placeOrder(order :Order) {
+        console.log("ps is "+JSON.stringify(order));
+        this.http.post('http://localhost:8080/order-place', order).subscribe(data => {
+            console.log("the response is "+data);
+        });
+    }
+
+    
+    fetchOrder(userName:string) {
+        let fetchOrder = new FetchOrder();
+        fetchOrder.userName = userName
+        console.log("ps is "+JSON.stringify(userName));
+        return this.http.post('http://localhost:8080/fetch-order',fetchOrder).map((res:Response) => res.json())
+    }
+
+
+    
 }
+

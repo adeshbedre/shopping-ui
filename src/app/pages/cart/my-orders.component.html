@@ -1,12 +1,36 @@
-<div class="cart-page-container">
+ <div class="cart-page-container">
     <div class="cart-page-header">
         <h1>Shopping Cart</h1>
     </div>
+
+
+<div class="row">
+    <table class="table table-striped">
+        <thead>
+          <tr style="text-align:left; font-size: xx-large;">
+            <th>Order ID</th>
+            <th>Total cost</th>
+            <th>No Of Items</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr  class="order-table" (click)="populateOrder(order)" *ngFor="let order of orderList;let i = index">
+            <td>{{order["id"]}}</td>
+            <td>{{order["totalCost"]}}</td>
+            <td>{{order["cartList"].length}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+    
+
+  
+
     <div class="cart-page-content" *ngIf="cartList.length > 0">
         <div class="cart-item-header cart-item-row">
             <div class="cart-item-cell cart-item-product"><span>Product</span></div>
             <div class="cart-item-cell cart-item-quantity"><span>Quantity</span></div>
-            <div class="cart-item-cell cart-item-total"><span>Total</span></div>
             <div class="cart-item-cell cart-item-action"><span>Action</span></div>
         </div>
         <div class="cart-item-row" *ngFor="let cart of cartList;let i = index">
@@ -19,33 +43,17 @@
                 </div>
             </div>
             <div class="cart-item-cell cart-item-quantity">
-                <quantity-control [quantity]="cart.quantity" (onChange)="changeQuantity(cart,$event)"></quantity-control>
+                <span>{{cart.quantity}}</span> 
             </div>
             <div class="cart-item-cell cart-item-total">
                 <div class="item-price">
                     {{cart.quantity*cart.product.price | currency :'INR':true }}
                 </div>
             </div>
-            <div class="cart-item-cell cart-item-action">
-                <div class="item-remove" (click)="removeFromCart(i)">X</div>
-            </div>
+            
         </div>
         <div class="row cart-total">
             <div class="col-lg-offset-6">
-                <div class="cart-total-row row">
-                    <div class="col-md-6 cart-total-label">
-                        Cart overview
-                    </div>
-                    <div class="col-md-6 cart-total-value"></div>
-                </div>
-                <div class="cart-total-row row">
-                    <div class="col-md-6 cart-total-label">
-                        subtotal
-                    </div>
-                    <div class="col-md-6 cart-total-value">
-                        {{totalPrice | currency :'INR':true}}
-                    </div>
-                </div>
                 <div class="cart-total-row row">
                     <div class="col-md-6 cart-total-label">
                         total
@@ -56,13 +64,9 @@
                 </div>
             </div>
         </div>
-        <div class="cart-buttons">
-            <div class="continue-shopping"><a routerLink="/">continue shopping</a></div>
-            <div class="checkout-button button button-primary button-large" (click)="onCheckout()">Checkout ({{totalPrice | currency :'INR':true}})</div>
-        </div>
+        
     </div>
     <div class="cart-page-content" *ngIf="cartList.length == 0">
-        <h4>Your cart is empty.</h4>
-        <a routerLink="/">Go shopping</a>
+        <h4>Click on the Order Id for more info</h4>
     </div>
-</div>
+</div>  

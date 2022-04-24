@@ -1,3 +1,9 @@
+.order-item {
+    color: black;
+    cursor: pointer;
+}
+
+
 @media screen and (min-width: 768px) {
     .compare-bar-content {
         text-align: center

@@ -11,7 +11,8 @@ export class ProductService {
 
     constructor(public http: Http) { }
 
-    public getProducts(dataURL:string){
+    public getProducts(){
+        let dataURL = "http://localhost:8080/findAllProducts";
         return this.http.get(dataURL)
             .map((res:Response) => res.json())
             .catch((error:any) => Observable.throw(error || 'Server error'));
